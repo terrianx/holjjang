@@ -1,3 +1,9 @@
+<script lang="ts">
+  export default {
+    
+  }
+</script>
+
 <template>
   <footer>
     <a 
@@ -8,14 +14,8 @@
   </footer>
 </template>
 
-<script lang="ts">
-  export default {
-    
-  }
-</script>
-
 <style lang="scss" scoped>
   footer {
-    color: black;
+    text-align: center;
   }
 </style>

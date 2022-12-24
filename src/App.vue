@@ -26,5 +26,9 @@ export default {
 </template>
 
 <style scoped>
-
+  main {
+    display: grid;
+    justify-content: center;
+    row-gap: 50px;
+  }
 </style>

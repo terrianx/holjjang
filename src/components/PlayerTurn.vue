@@ -5,16 +5,11 @@
 </script>
 
 <template>
-  <nav>
-    <h1>Holjjang</h1>
-  </nav>
+  <div>
+
+  </div>
 </template>
 
 <style lang="scss" scoped>
-  $main: green;
-  nav {
-    h1 {
-      text-align: center;
-    }
-  }
+
 </style>
