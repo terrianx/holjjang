@@ -3,15 +3,23 @@
     props: {
       marbles: Number
     },
+    emits: ['onPlayerSelect'],
     data() {
       return {
-        marblesSelected: 0
+        marblesSelected: 1,
+        marblesRemaining: this.marbles
       }
     },
     methods: {
       selectMarbles(e: Event) {
         let eventTarget = e.target as HTMLInputElement;
-        this.marblesSelected = parseInt(eventTarget.value)
+        this.marblesSelected = parseInt(eventTarget.value);
+        if (this.marbles) {
+          this.marblesRemaining = this.marbles - this.marblesSelected;
+        }
+      },
+      endPlayerSelect() {
+        this.$emit('onPlayerSelect', this.marblesSelected);
       }
     }
   }
@@ -20,14 +28,15 @@
 <template>
   <div>
     <h2>Select amount of marbles</h2>
+    <h3>Marbles remaining: {{ marblesRemaining }}</h3>
     <input 
       type="number"
       min="1"
       :max="marbles"
       :value="marblesSelected"
       @input="selectMarbles"
-      placeholder="0" >
-    <h3>Marbles remaining: {{ marbles }}</h3>
+      placeholder="1" >
+    <button @click="endPlayerSelect">Confirm</button>
   </div>
 </template>
 

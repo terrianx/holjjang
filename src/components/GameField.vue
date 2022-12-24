@@ -1,26 +1,62 @@
 <script lang="ts">
 import GameStart from './GameStart.vue';
-import PlayerTurn from './PlayerTurn.vue';
-import ComputerTurn from './ComputerTurn.vue';
+import PlayerSelect from './PlayerSelect.vue';
+import ComputerGuess from './ComputerGuess.vue';
+import ComputerSelect from './ComputerSelect.vue';
+import PlayerGuess from './PlayerGuess.vue';
+
+enum Turn {
+  NotStarted,
+  PlayerSelecting,
+  ComputerGuessing,
+  ComputerSelecting,
+  PlayerGuessing
+}
 
   export default {
     components: {
       GameStart,
-      PlayerTurn,
-      ComputerTurn
+      PlayerSelect,
+      ComputerGuess,
+      ComputerSelect,
+      PlayerGuess
     },
     data() {
       return {
-        isGameStarted: false,
+        gameState: Turn.NotStarted,
         playerMarbles: 10,
         computerMarbles: 10,
-        playerTurn: false
+        playerSelected: 1,
       }
     },
     methods: {
       startGame(isPlayerStart: boolean) {
-        this.isGameStarted = true;
-        this.playerTurn = isPlayerStart;
+        if (isPlayerStart) {
+          this.gameState = Turn.PlayerSelecting;
+        } else {
+          this.gameState = Turn.ComputerSelecting;
+        }
+      },
+      startComputerGuess(marblesSelected: number) {
+        this.playerSelected = marblesSelected;
+        this.gameState = Turn.ComputerGuessing;
+      }
+    },
+    computed: {
+      isGameNotStarted() {
+        return this.gameState == Turn.NotStarted;
+      },
+      isPlayerSelectTurn() {
+        return this.gameState == Turn.PlayerSelecting;
+      },
+      isComputerGuessTurn() {
+        return this.gameState == Turn.ComputerGuessing;
+      },
+      isComputerSelectTurn() {
+        return this.gameState == Turn.ComputerSelecting;
+      },
+      isPlayerGuessTurn() {
+        return this.gameState == Turn.PlayerGuessing;
       }
     }
   }
@@ -28,9 +64,25 @@ import ComputerTurn from './ComputerTurn.vue';
 
 <template>
   <div class="game-field">
-    <GameStart @start="startGame" v-if="!isGameStarted" />
-    <PlayerTurn :marbles="playerMarbles" v-if="isGameStarted && playerTurn" />
-    <ComputerTurn :marbles="computerMarbles" v-else-if="isGameStarted && !playerTurn" />
+    <GameStart
+      @start="startGame" 
+      v-if="isGameNotStarted" />
+
+    <PlayerSelect
+      @on-player-select="startComputerGuess" 
+      :marbles="playerMarbles" 
+      v-if="isPlayerSelectTurn" />
+
+    <ComputerGuess
+      :marbles="computerMarbles" 
+      :playerSelected="playerSelected" 
+      v-else-if="isComputerGuessTurn" />
+
+    <ComputerSelect
+      v-else-if="isComputerSelectTurn"/>
+
+    <PlayerGuess
+      v-else-if="isPlayerGuessTurn"/>
   </div>
 </template>
 

@@ -6,7 +6,7 @@
 
 <template>
   <div>
-    <p>Computer turn</p>
+
   </div>
 </template>
 
