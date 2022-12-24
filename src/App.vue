@@ -25,10 +25,17 @@ export default {
   <FooterInfo />
 </template>
 
-<style scoped>
+<style lang="scss">
+  $accent: hsl(0, 100%, 68%);
+
   main {
     display: grid;
     justify-content: center;
     row-gap: 50px;
+  }
+
+  a,
+  a:visited {
+    color: $accent;
   }
 </style>

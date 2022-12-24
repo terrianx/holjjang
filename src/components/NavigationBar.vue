@@ -11,10 +11,12 @@
 </template>
 
 <style lang="scss" scoped>
-  $main: green;
+$accent: hsl(0, 100%, 68%);
   nav {
     h1 {
       text-align: center;
+      color: $accent;
+      font-size: 48px;
     }
   }
 </style>

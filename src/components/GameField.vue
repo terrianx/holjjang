@@ -39,5 +39,6 @@ import ComputerTurn from './ComputerTurn.vue';
     display: grid;
     height: 80vh;
     align-items: center;
+    justify-content: center;
   }
 </style>
