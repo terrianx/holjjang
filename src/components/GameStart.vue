@@ -1,9 +1,9 @@
 <script lang="ts">
   export default {
-    emits: ['start'],
+    emits: ['onStart'],
     methods: {
       setPlayerStarting(isPlayerStart: boolean) {
-        this.$emit('start', isPlayerStart)
+        this.$emit('onStart', isPlayerStart)
       }
     }
   }

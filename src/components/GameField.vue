@@ -4,6 +4,7 @@ import PlayerBet from './PlayerBet.vue';
 import ComputerGuess from './ComputerGuess.vue';
 import ComputerBet from './ComputerBet.vue';
 import PlayerGuess from './PlayerGuess.vue';
+import GameEnd from './GameEnd.vue';
 
 enum Turn {
   NotStarted,
@@ -20,22 +21,26 @@ enum Winner {
   None
 }
 
+const defaultMarbles = 10;
+const defaultBet = 1;
+
   export default {
     components: {
       GameStart,
       PlayerBet,
       ComputerGuess,
       ComputerBet,
-      PlayerGuess
+      PlayerGuess,
+      GameEnd
     },
     data() {
       return {
         gameState: Turn.NotStarted,
         winState: Winner.None,
-        playerMarbles: 10,
-        computerMarbles: 10,
-        playerBetAmount: 1,
-        computerBetAmount: 1
+        playerMarbles: defaultMarbles,
+        computerMarbles: defaultMarbles,
+        playerBetAmount: defaultBet,
+        computerBetAmount: defaultBet
       }
     },
     computed: {
@@ -63,6 +68,16 @@ enum Winner {
       isPlayerGuessTurn() {
         return this.gameState == Turn.PlayerGuessing
                 && this.winState == Winner.None;
+      },
+      isGameEnd() {
+        return this.winState != Winner.None;
+      },
+      getWinner() {
+        if (this.winState == Winner.Player) {
+          return 'Player';
+        } else {
+          return 'Computer';
+        }
       }
     },
     methods: {
@@ -73,29 +88,52 @@ enum Winner {
           this.gameState = Turn.ComputerBetting;
         }
       },
-      startComputerGuess(marblesBet: number) {
+      playPlayerBet(marblesWon: number) {
+        this.playerMarbles += marblesWon;
+        this.computerMarbles -= marblesWon;
+        this.checkEndGame();
+        this.gameState = Turn.PlayerBetting;
+      },
+      playComputerGuess(marblesBet: number) {
         this.playerBetAmount = marblesBet;
         this.gameState = Turn.ComputerGuessing;
       },
-      startComputerBet(marblesWon: number) {
+      playComputerBet(marblesWon: number) {
         this.playerMarbles += marblesWon;
         this.computerMarbles -= marblesWon;
+        this.checkEndGame();
         this.gameState = Turn.ComputerBetting;
       },
-      startPlayerBetBeforeGuess(marblesBet: number) {
+      playPlayerBetBeforeGuess(marblesBet: number) {
         this.computerBetAmount = marblesBet;
         this.gameState = Turn.PlayerBetBeforeGuessing;
       },
       playAfterBetTurn(marblesBet: number) {
         if (this.isPlayerBetBeforeGuessTurn) {
-          this.startPlayerGuess(marblesBet);
+          this.playPlayerGuess(marblesBet);
         } else {
-          this.startComputerGuess(marblesBet);
+          this.playComputerGuess(marblesBet);
         }
       },
-      startPlayerGuess(marblesBet: number) {
+      playPlayerGuess(marblesBet: number) {
         this.playerBetAmount = marblesBet;
         this.gameState = Turn.PlayerGuessing;
+      },
+      checkEndGame() {
+        let maxMarbles = defaultMarbles * 2;
+        if (this.playerMarbles == maxMarbles) {
+          this.winState = Winner.Player;
+        } else if (this.computerMarbles == maxMarbles) {
+          this.winState = Winner.Computer;
+        }
+      },
+      resetGame() {
+        this.gameState = Turn.NotStarted;
+        this.winState = Winner.None;
+        this.playerMarbles = defaultMarbles,
+        this.computerMarbles = defaultMarbles,
+        this.playerBetAmount = defaultBet,
+        this.computerBetAmount = defaultBet
       }
     }
   }
@@ -105,7 +143,7 @@ enum Winner {
   <div class="game-field">
     <p>Player marbles: {{ playerMarbles }}</p>
     <GameStart
-      @start="startGame" 
+      @on-start="startGame" 
       v-if="isGameNotStarted" />
 
     <PlayerBet
@@ -115,18 +153,26 @@ enum Winner {
       v-if="isPlayerBetTurn" />
 
     <ComputerGuess
-      @on-computer-guess="startComputerBet"
+      @on-computer-guess="playComputerBet"
       :marbles="computerMarbles" 
-      :playerBetAmount="playerBetAmount" 
+      :playerBetAmount="playerBetAmount"
       v-else-if="isComputerGuessTurn" />
 
     <ComputerBet
-      @on-computer-bet="startPlayerBetBeforeGuess"
+      @on-computer-bet="playPlayerBetBeforeGuess"
       :marbles="computerMarbles"
       v-else-if="isComputerBetTurn"/>
 
     <PlayerGuess
+      @on-player-guess="playPlayerBet"
+      :playerBetAmount="playerBetAmount"
+      :computerBetAmount="computerBetAmount"
       v-else-if="isPlayerGuessTurn"/>
+    
+    <GameEnd
+      @on-reset="resetGame"
+      :winner="getWinner"
+      v-if="isGameEnd"/>
   </div>
 </template>
 

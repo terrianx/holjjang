@@ -1,4 +1,6 @@
 <script lang="ts">
+import { printBet, printGains } from './PrintHelper';
+
   export default {
     props: {
       marbles: Number,
@@ -14,6 +16,14 @@
       }
     },
     computed: {
+      getPrintBet() {
+        if (this.playerBetAmount) {
+          return printBet(this.playerBetAmount);
+        }
+      },
+      printResult() {
+        return 'Computer bet ' + this.computerBetAmount;
+      },
       printGuessCorrectness() {
         if (this.playerBetAmount) {
           let evenBet: boolean = this.playerBetAmount % 2 == 0;
@@ -32,28 +42,8 @@
           }
         }
       },
-      printBet() {
-        if (this.playerBetAmount == 1) {
-          return '1 marble';
-        } else {
-          return this.playerBetAmount + ' marbles';
-        }
-      },
-      printResult() {
-        return 'Computer bet ' + this.computerBetAmount;
-      },
-      printGains() {
-        if (this.isPlayerWin) {
-          if (this.minimumBet == 1) {
-            return 'You win 1 marble from Computer';
-          }
-          return 'You win ' + this.minimumBet + ' marbles from Computer';
-        } else {
-          if (this.minimumBet == 1) {
-            return 'Computer wins 1 marble from you';
-          }
-          return 'Computer wins ' + this.minimumBet + ' marbles from you';
-        }
+      getPrintGains() {
+        return printGains(this.isPlayerWin, this.minimumBet);
       }
     },
     mounted() {
@@ -79,10 +69,10 @@
 
 <template>
   <div>
-    <h2>You bet {{ printBet }} and {{ printResult }}</h2>
+    <h2>You bet {{ getPrintBet }} and {{ printResult }}</h2>
     <h3>{{ printGuessCorrectness }}</h3>
-    <p>{{ printGains }}</p>
-    <button  @click="endComputerGuess">Next --></button>
+    <p>{{ getPrintGains }}</p>
+    <button @click="endComputerGuess">Next --></button>
   </div>
 </template>
 
