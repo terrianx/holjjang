@@ -6,7 +6,7 @@
 
 <template>
   <div>
-
+    <p>Computer betting</p>
   </div>
 </template>
 

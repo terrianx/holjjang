@@ -3,23 +3,23 @@
     props: {
       marbles: Number
     },
-    emits: ['onPlayerSelect'],
+    emits: ['onPlayerBet'],
     data() {
       return {
-        marblesSelected: 1,
+        marblesBet: 1,
         marblesRemaining: this.marbles
       }
     },
     methods: {
       selectMarbles(e: Event) {
         let eventTarget = e.target as HTMLInputElement;
-        this.marblesSelected = parseInt(eventTarget.value);
+        this.marblesBet = parseInt(eventTarget.value);
         if (this.marbles) {
-          this.marblesRemaining = this.marbles - this.marblesSelected;
+          this.marblesRemaining = this.marbles - this.marblesBet;
         }
       },
       endPlayerSelect() {
-        this.$emit('onPlayerSelect', this.marblesSelected);
+        this.$emit('onPlayerBet', this.marblesBet);
       }
     }
   }
@@ -27,13 +27,13 @@
 
 <template>
   <div>
-    <h2>Select amount of marbles</h2>
+    <h2>Select amount of marbles to bet</h2>
     <h3>Marbles remaining: {{ marblesRemaining }}</h3>
     <input 
       type="number"
       min="1"
       :max="marbles"
-      :value="marblesSelected"
+      :value="marblesBet"
       @input="selectMarbles"
       placeholder="1" >
     <button @click="endPlayerSelect">Confirm</button>
