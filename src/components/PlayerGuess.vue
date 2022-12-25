@@ -6,7 +6,7 @@
 
 <template>
   <div>
-
+    <p>Player guess even or odd</p>
   </div>
 </template>
 

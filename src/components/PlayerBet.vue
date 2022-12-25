@@ -1,7 +1,8 @@
 <script lang="ts">
   export default {
     props: {
-      marbles: Number
+      marbles: Number,
+      isPlayerGuessingNext: Boolean
     },
     emits: ['onPlayerBet'],
     data() {
@@ -21,22 +22,31 @@
       endPlayerSelect() {
         this.$emit('onPlayerBet', this.marblesBet);
       }
+    },
+    computed: {
+      printNextGuesser() {
+        if (this.isPlayerGuessingNext) {
+          return 'You are guessing next';
+        } else {
+          return 'Computer is guessing next';
+        }
+      }
     }
   }
 </script>
 
 <template>
   <div>
-    <h2>Select amount of marbles to bet</h2>
+    <h2>{{ printNextGuesser }}, select amount to bet against Computer</h2>
     <h3>Marbles remaining: {{ marblesRemaining }}</h3>
-    <input 
+    <input
       type="number"
       min="1"
       :max="marbles"
       :value="marblesBet"
       @input="selectMarbles"
       placeholder="1" >
-    <button @click="endPlayerSelect">Confirm</button>
+    <button @click="endPlayerSelect">Bet</button>
   </div>
 </template>
 

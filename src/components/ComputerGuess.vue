@@ -82,7 +82,7 @@
     <h2>You bet {{ printBet }} and {{ printResult }}</h2>
     <h3>{{ printGuessCorrectness }}</h3>
     <p>{{ printGains }}</p>
-    <button  @click="endComputerGuess">Ok</button>
+    <button  @click="endComputerGuess">Next --></button>
   </div>
 </template>
 

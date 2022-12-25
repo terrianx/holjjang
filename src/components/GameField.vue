@@ -10,7 +10,14 @@ enum Turn {
   PlayerBetting,
   ComputerGuessing,
   ComputerBetting,
+  PlayerBetBeforeGuessing,
   PlayerGuessing
+}
+
+enum Winner {
+  Player,
+  Computer,
+  None
 }
 
   export default {
@@ -24,6 +31,7 @@ enum Turn {
     data() {
       return {
         gameState: Turn.NotStarted,
+        winState: Winner.None,
         playerMarbles: 10,
         computerMarbles: 10,
         playerBetAmount: 1,
@@ -46,23 +54,48 @@ enum Turn {
         this.playerMarbles += marblesWon;
         this.computerMarbles -= marblesWon;
         this.gameState = Turn.ComputerBetting;
+      },
+      startPlayerBetBeforeGuess(marblesBet: number) {
+        this.computerBetAmount = marblesBet;
+        this.gameState = Turn.PlayerBetBeforeGuessing;
+      },
+      playAfterBetTurn(marblesBet: number) {
+        if (this.isPlayerBetBeforeGuessTurn) {
+          this.startPlayerGuess(marblesBet);
+        } else {
+          this.startComputerGuess(marblesBet);
+        }
+      },
+      startPlayerGuess(marblesBet: number) {
+        this.playerBetAmount = marblesBet;
+        this.gameState = Turn.PlayerGuessing;
       }
     },
     computed: {
       isGameNotStarted() {
-        return this.gameState == Turn.NotStarted;
+        return this.gameState == Turn.NotStarted
+                && this.winState == Winner.None;
       },
       isPlayerBetTurn() {
-        return this.gameState == Turn.PlayerBetting;
+        return ((this.gameState == Turn.PlayerBetting)
+                || (this.gameState == Turn.PlayerBetBeforeGuessing))
+                && this.winState == Winner.None;
       },
       isComputerGuessTurn() {
-        return this.gameState == Turn.ComputerGuessing;
+        return this.gameState == Turn.ComputerGuessing
+                && this.winState == Winner.None;
       },
       isComputerBetTurn() {
-        return this.gameState == Turn.ComputerBetting;
+        return this.gameState == Turn.ComputerBetting
+                && this.winState == Winner.None;
+      },
+      isPlayerBetBeforeGuessTurn() {
+        return this.gameState == Turn.PlayerBetBeforeGuessing
+                && this.winState == Winner.None;
       },
       isPlayerGuessTurn() {
-        return this.gameState == Turn.PlayerGuessing;
+        return this.gameState == Turn.PlayerGuessing
+                && this.winState == Winner.None;
       }
     }
   }
@@ -76,8 +109,9 @@ enum Turn {
       v-if="isGameNotStarted" />
 
     <PlayerBet
-      @on-player-bet="startComputerGuess" 
-      :marbles="playerMarbles" 
+      @on-player-bet="playAfterBetTurn" 
+      :marbles="playerMarbles"
+      :isPlayerGuessingNext="isPlayerBetBeforeGuessTurn"
       v-if="isPlayerBetTurn" />
 
     <ComputerGuess
@@ -87,6 +121,8 @@ enum Turn {
       v-else-if="isComputerGuessTurn" />
 
     <ComputerBet
+      @on-computer-bet="startPlayerBetBeforeGuess"
+      :marbles="computerMarbles"
       v-else-if="isComputerBetTurn"/>
 
     <PlayerGuess
