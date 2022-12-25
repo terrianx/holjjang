@@ -11,6 +11,15 @@
         marblesRemaining: this.marbles
       }
     },
+    computed: {
+      printNextGuesser() {
+        if (this.isPlayerGuessingNext) {
+          return 'You are guessing next';
+        } else {
+          return 'Computer is guessing next';
+        }
+      }
+    },
     methods: {
       selectMarbles(e: Event) {
         let eventTarget = e.target as HTMLInputElement;
@@ -21,15 +30,6 @@
       },
       endPlayerSelect() {
         this.$emit('onPlayerBet', this.marblesBet);
-      }
-    },
-    computed: {
-      printNextGuesser() {
-        if (this.isPlayerGuessingNext) {
-          return 'You are guessing next';
-        } else {
-          return 'Computer is guessing next';
-        }
       }
     }
   }

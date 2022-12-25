@@ -13,24 +13,6 @@
         isPlayerWin: true
       }
     },
-    mounted() {
-      this.evenGuess = Math.random() >= 0.5;
-      if (this.marbles) {
-        this.computerBetAmount = Math.ceil(Math.random() * this.marbles);
-      }
-      if (this.playerBetAmount) {
-        this.minimumBet = Math.min(this.computerBetAmount, this.playerBetAmount);
-      }
-    },
-    methods: {
-      endComputerGuess() {
-        if (this.isPlayerWin) {
-          this.$emit('onComputerGuess', this.minimumBet);
-        } else {
-          this.$emit('onComputerGuess', -this.minimumBet);
-        }
-      }
-    },
     computed: {
       printGuessCorrectness() {
         if (this.playerBetAmount) {
@@ -71,6 +53,24 @@
             return 'Computer wins 1 marble from you';
           }
           return 'Computer wins ' + this.minimumBet + ' marbles from you';
+        }
+      }
+    },
+    mounted() {
+      this.evenGuess = Math.random() >= 0.5;
+      if (this.marbles) {
+        this.computerBetAmount = Math.ceil(Math.random() * this.marbles);
+      }
+      if (this.playerBetAmount) {
+        this.minimumBet = Math.min(this.computerBetAmount, this.playerBetAmount);
+      }
+    },
+    methods: {
+      endComputerGuess() {
+        if (this.isPlayerWin) {
+          this.$emit('onComputerGuess', this.minimumBet);
+        } else {
+          this.$emit('onComputerGuess', -this.minimumBet);
         }
       }
     }

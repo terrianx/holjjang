@@ -38,6 +38,33 @@ enum Winner {
         computerBetAmount: 1
       }
     },
+    computed: {
+      isGameNotStarted() {
+        return this.gameState == Turn.NotStarted
+                && this.winState == Winner.None;
+      },
+      isPlayerBetTurn() {
+        return ((this.gameState == Turn.PlayerBetting)
+                || (this.gameState == Turn.PlayerBetBeforeGuessing))
+                && this.winState == Winner.None;
+      },
+      isComputerGuessTurn() {
+        return this.gameState == Turn.ComputerGuessing
+                && this.winState == Winner.None;
+      },
+      isComputerBetTurn() {
+        return this.gameState == Turn.ComputerBetting
+                && this.winState == Winner.None;
+      },
+      isPlayerBetBeforeGuessTurn() {
+        return this.gameState == Turn.PlayerBetBeforeGuessing
+                && this.winState == Winner.None;
+      },
+      isPlayerGuessTurn() {
+        return this.gameState == Turn.PlayerGuessing
+                && this.winState == Winner.None;
+      }
+    },
     methods: {
       startGame(isPlayerStart: boolean) {
         if (isPlayerStart) {
@@ -69,33 +96,6 @@ enum Winner {
       startPlayerGuess(marblesBet: number) {
         this.playerBetAmount = marblesBet;
         this.gameState = Turn.PlayerGuessing;
-      }
-    },
-    computed: {
-      isGameNotStarted() {
-        return this.gameState == Turn.NotStarted
-                && this.winState == Winner.None;
-      },
-      isPlayerBetTurn() {
-        return ((this.gameState == Turn.PlayerBetting)
-                || (this.gameState == Turn.PlayerBetBeforeGuessing))
-                && this.winState == Winner.None;
-      },
-      isComputerGuessTurn() {
-        return this.gameState == Turn.ComputerGuessing
-                && this.winState == Winner.None;
-      },
-      isComputerBetTurn() {
-        return this.gameState == Turn.ComputerBetting
-                && this.winState == Winner.None;
-      },
-      isPlayerBetBeforeGuessTurn() {
-        return this.gameState == Turn.PlayerBetBeforeGuessing
-                && this.winState == Winner.None;
-      },
-      isPlayerGuessTurn() {
-        return this.gameState == Turn.PlayerGuessing
-                && this.winState == Winner.None;
       }
     }
   }
