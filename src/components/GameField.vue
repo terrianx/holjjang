@@ -83,9 +83,9 @@ const defaultBet = 1;
     methods: {
       startGame(isPlayerStart: boolean) {
         if (isPlayerStart) {
-          this.gameState = Turn.PlayerBetting;
-        } else {
           this.gameState = Turn.ComputerBetting;
+        } else {
+          this.gameState = Turn.PlayerBetting;
         }
       },
       playPlayerBet(marblesWon: number) {
