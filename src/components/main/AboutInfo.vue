@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <div class="about">
+  <div id="about" class="about">
     <h2>About</h2>
     <p>
       Odds and evens is a simple game of chance and hand game, 

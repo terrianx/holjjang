@@ -141,7 +141,6 @@ const defaultBet = 1;
 
 <template>
   <div class="game-field">
-    <p>Player marbles: {{ playerMarbles }}</p>
     <GameStart
       @on-start="startGame" 
       v-if="isGameNotStarted" />
@@ -179,8 +178,8 @@ const defaultBet = 1;
 <style lang="scss" scoped>
   .game-field {
     display: grid;
-    grid: min-content 40vh / 1fr;
-    height: 80vh;
+    grid: 1fr / 1fr;
+    height: 100vh;
     align-items: center;
     justify-items: center;
     justify-content: center;

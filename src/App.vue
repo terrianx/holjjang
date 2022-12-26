@@ -1,8 +1,8 @@
 <script lang="ts">
-import NavigationBar from './components/NavigationBar.vue'
-import GameField from './components/GameField.vue'
-import AboutInfo from './components/AboutInfo.vue'
-import FooterInfo from './components/FooterInfo.vue'
+import NavigationBar from './components/main/NavigationBar.vue'
+import GameField from './components/game/GameField.vue'
+import AboutInfo from './components/main/AboutInfo.vue'
+import FooterInfo from './components/main/FooterInfo.vue'
 
 export default {
   components: {
@@ -26,16 +26,51 @@ export default {
 </template>
 
 <style lang="scss">
-  $accent: hsl(0, 100%, 68%);
+@import './assets/Variables.css';
+
+  * {
+    box-sizing: border-box;
+
+    padding: 0;
+    margin: 0;
+
+    font-family: 'Inter', sans-serif;
+
+    scroll-behavior: smooth;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    background-color: hsl(35, 100%, 92%);
+  }
+
+  body {
+    display: grid;
+  }
+
+  #app {
+    width: 100%;
+    max-width: 1200px;
+    justify-self: center;
+  }
 
   main {
     display: grid;
     justify-content: center;
-    row-gap: 50px;
   }
 
-  a,
-  a:visited {
-    color: $accent;
+  a {
+    text-decoration: none;
+    font-weight: bold;
   }
+
+  button {
+    background-color: var(--accent);
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 20px;
+  }
+
 </style>

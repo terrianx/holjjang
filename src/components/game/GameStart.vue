@@ -11,9 +11,10 @@
 
 <template>
   <div>
-    <h2>Who's first?</h2>
-    <button @click="setPlayerStarting(true)">Player</button>
-    <button @click="setPlayerStarting(false)">Computer</button>
+    <h2>Who's first ✋?</h2>
+    <p>Pick who starts guessing</p>
+    <button @click="setPlayerStarting(true)">You</button>
+    <button @click="setPlayerStarting(false)">Bot</button>
   </div>
 </template>
 
