@@ -141,47 +141,97 @@ const defaultBet = 1;
 
 <template>
   <div class="game-field">
-    <GameStart
-      @on-start="startGame" 
-      v-if="isGameNotStarted" />
+    <div class="marble-display-left">
+      <p>Your marbles</p>
+      <h3>{{ playerMarbles }}</h3>
+    </div>
+    <div class="game-board">
+      <GameStart
+        @on-start="startGame" 
+        v-if="isGameNotStarted" />
 
-    <PlayerBet
-      @on-player-bet="playAfterBetTurn" 
-      :marbles="playerMarbles"
-      :isPlayerGuessingNext="isPlayerBetBeforeGuessTurn"
-      v-if="isPlayerBetTurn" />
+      <PlayerBet
+        @on-player-bet="playAfterBetTurn" 
+        :marbles="playerMarbles"
+        :isPlayerGuessingNext="isPlayerBetBeforeGuessTurn"
+        v-if="isPlayerBetTurn" />
 
-    <ComputerGuess
-      @on-computer-guess="playComputerBet"
-      :marbles="computerMarbles" 
-      :playerBetAmount="playerBetAmount"
-      v-else-if="isComputerGuessTurn" />
+      <ComputerGuess
+        @on-computer-guess="playComputerBet"
+        :marbles="computerMarbles" 
+        :playerBetAmount="playerBetAmount"
+        v-else-if="isComputerGuessTurn" />
 
-    <ComputerBet
-      @on-computer-bet="playPlayerBetBeforeGuess"
-      :marbles="computerMarbles"
-      v-else-if="isComputerBetTurn"/>
+      <ComputerBet
+        @on-computer-bet="playPlayerBetBeforeGuess"
+        :marbles="computerMarbles"
+        v-else-if="isComputerBetTurn"/>
 
-    <PlayerGuess
-      @on-player-guess="playPlayerBet"
-      :playerBetAmount="playerBetAmount"
-      :computerBetAmount="computerBetAmount"
-      v-else-if="isPlayerGuessTurn"/>
-    
-    <GameEnd
-      @on-reset="resetGame"
-      :winner="getWinner"
-      v-if="isGameEnd"/>
+      <PlayerGuess
+        @on-player-guess="playPlayerBet"
+        :playerBetAmount="playerBetAmount"
+        :computerBetAmount="computerBetAmount"
+        v-else-if="isPlayerGuessTurn"/>
+      
+      <GameEnd
+        @on-reset="resetGame"
+        :winner="getWinner"
+        v-if="isGameEnd"/>
+    </div>
+    <div class="marble-display-right">
+      <p>Bot marbles</p>
+      <h3>{{ computerMarbles }}</h3>
+    </div>
+    <button class="reset">Reset</button>
   </div>
 </template>
 
 <style lang="scss" scoped>
+@import '../../assets/Variables.css';
+
   .game-field {
     display: grid;
-    grid: 1fr / 1fr;
+    grid: 1fr 80px / 1fr max-content 1fr;
     height: 100vh;
+    width: 100%;
     align-items: center;
     justify-items: center;
-    justify-content: center;
+  }
+
+  .game-board {
+    padding: 0 60px;    
+  }
+
+  .marble-display-left {
+    padding-right: 40px;
+    border-right: 2px solid var(--dark);
+  }
+
+  .marble-display-right {
+    padding-left: 40px;
+    border-left: 2px solid var(--dark);
+  }
+
+  .marble-display-left,
+  .marble-display-right {
+    display: grid;
+    grid: auto auto / auto;
+    color: var(--dark);
+    height: 120px;
+    margin-top: 80px;
+    justify-self: center;
+    align-content: center;
+
+    h3 {
+      color: var(--accent);
+      text-align: center;
+    }
+  }
+
+  .reset {
+    margin-right: 40px;
+    grid-column: span 3;
+    justify-self: right;
+    font-size: 24px;
   }
 </style>

@@ -19,5 +19,9 @@
 </template>
 
 <style lang="scss" scoped>
+@import '../../assets/Variables.css';
 
+  h2 {
+    color: var(--dark);
+  }
 </style>

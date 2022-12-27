@@ -50,18 +50,30 @@ export default {
 
   #app {
     width: 100%;
-    max-width: 1200px;
+    max-width: var(--max-width);
     justify-self: center;
   }
 
   main {
-    display: grid;
+    width: 100%;
     justify-content: center;
   }
 
   a {
     text-decoration: none;
     font-weight: bold;
+  }
+
+  h2 {
+    font-size: 48px;
+  }
+
+  h3 {
+    font-size: 36px;
+  }
+
+  p {
+    font-size: 24px;
   }
 
   button {

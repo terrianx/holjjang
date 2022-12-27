@@ -31,10 +31,12 @@
 @import '../../assets/Variables.css';
 
   nav {
+    position: absolute;
     display: grid;
     grid: 80px / 1fr 1fr;
     align-items: center;
     width: 100%;
+    max-width: var(--max-width);
     padding: 0 40px;
 
     h1 {
