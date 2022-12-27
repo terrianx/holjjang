@@ -10,18 +10,32 @@
 </script>
 
 <template>
-  <div>
-    <h2>Who's first ✋?</h2>
-    <p>Pick who starts guessing</p>
-    <button @click="setPlayerStarting(true)">You</button>
-    <button @click="setPlayerStarting(false)">Bot</button>
+  <div class="game-start">
+    <div>
+      <h2>Who's first ✋?</h2>
+      <p>Pick who starts guessing</p>
+    </div>
+    <div class="start-buttons">
+      <button @click="setPlayerStarting(true)">You</button>
+      <button @click="setPlayerStarting(false)">Bot</button>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 @import '../../assets/Variables.css';
 
-  h2 {
-    color: var(--dark);
+  .start-buttons {
+    display: grid;
+    grid: auto / 1fr 1fr;
+    justify-items: center;
+
+    button {
+      font-size: 36px;
+    }
+  }
+
+  .start-buttons button:nth-child(2) {
+    background-color: var(--dark);
   }
 </style>

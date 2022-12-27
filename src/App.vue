@@ -83,6 +83,7 @@ export default {
     border: none;
     border-radius: 8px;
     padding: 5px 20px;
+    width: min-content;
   }
 
 </style>

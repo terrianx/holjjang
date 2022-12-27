@@ -186,7 +186,7 @@ const defaultBet = 1;
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '../../assets/Variables.css';
 
   .game-field {
@@ -196,10 +196,25 @@ const defaultBet = 1;
     width: 100%;
     align-items: center;
     justify-items: center;
+    color: var(--dark);
   }
 
   .game-board {
-    padding: 0 60px;    
+    padding: 0 60px;
+    align-self: start;
+    margin-top: 35vh;
+  }
+
+  .game-board > div {
+    display: grid;
+    grid: auto auto / auto;
+    row-gap: 40px;
+    text-align: center;
+
+    h2 {
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
   }
 
   .marble-display-left {
@@ -217,8 +232,8 @@ const defaultBet = 1;
     display: grid;
     grid: auto auto / auto;
     color: var(--dark);
-    height: 120px;
-    margin-top: 80px;
+    height: 140px;
+    margin-top: 60px;
     justify-self: center;
     align-content: center;
 
