@@ -191,7 +191,7 @@ const defaultBet = 1;
 
   .game-field {
     display: grid;
-    grid: 1fr 80px / 1fr max-content 1fr;
+    grid: 1fr 80px / 1fr 600px 1fr;
     height: 100vh;
     width: 100%;
     align-items: center;
