@@ -2,6 +2,8 @@
   --accent: hsl(7, 100%, 72%);
   --dark: hsl(0, 0%, 25%);
   --bg: hsl(35, 100%, 92%);
+  --med-bg: hsl(35, 100%, 88%);
+  --sat-bg: hsl(35, 100%, 84%);
 
   --max-width: 1200px;
 }

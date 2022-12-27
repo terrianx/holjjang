@@ -26,12 +26,16 @@
       </a>
       <a
         href="https://github.com/terrianx/holjjang"
-        target="_blank">
+        target="_blank"
+        class="icon-link">
+        <img src="../../assets/images/outlink-dark.svg" alt="Outlink icon"/>
         Github
       </a>
       <a
         href="https://terrianx.netlify.app/"
-        target="_blank">
+        target="_blank"
+        class="icon-link">
+        <img src="../../assets/images/outlink-dark.svg" alt="Outlink icon"/>
         Terrian Xiao
       </a>
     </div>
@@ -49,6 +53,7 @@
     row-gap: 80px;
     justify-content: center;
     justify-items: center;
+    background-color: var(--sat-bg);
 
     p {
       color: var(--dark);
@@ -59,12 +64,23 @@
       color: var(--dark);
       font-size: 24px;
     }
+
+    img {
+      width: 24px;
+    }
   }
 
   .links {
     display: grid;
     grid: auto / repeat(6, auto);
     column-gap: 60px;
+  }
+
+  .icon-link {
+    display: grid;
+    grid: auto / auto auto;
+    column-gap: 5px;
+    align-items: center;
   }
 
   .copyright {

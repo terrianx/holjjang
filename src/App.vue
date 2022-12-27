@@ -1,14 +1,16 @@
 <script lang="ts">
-import NavigationBar from './components/main/NavigationBar.vue'
-import GameField from './components/game/GameField.vue'
-import AboutInfo from './components/main/AboutInfo.vue'
-import FooterInfo from './components/main/FooterInfo.vue'
+import NavigationBar from './components/main/NavigationBar.vue';
+import GameField from './components/game/GameField.vue';
+import AboutInfo from './components/main/AboutInfo.vue';
+import BackToTop from './components/main/BackToTop.vue';
+import FooterInfo from './components/main/FooterInfo.vue';
 
 export default {
   components: {
     NavigationBar,
     GameField,
     AboutInfo,
+    BackToTop,
     FooterInfo
   }
 }
@@ -21,6 +23,7 @@ export default {
   <main>
     <GameField />
     <AboutInfo />
+    <BackToTop />
   </main>
   <FooterInfo />
 </template>
@@ -55,8 +58,9 @@ export default {
   }
 
   main {
+    display: grid;
     width: 100%;
-    justify-content: center;
+    justify-items: center;
   }
 
   a {

@@ -8,7 +8,7 @@
   <div id="about" class="about">
     <h2>About</h2>
     <p>
-      Odds and evens is a simple game of chance and hand game, 
+      &emsp;&emsp;&emsp; Odds and evens is a simple game of chance and hand game, 
       involving two people simultaneously revealing a number 
       of fingers and winning or losing depending on whether they 
       are odd or even, or alternatively involving one person 
@@ -24,23 +24,45 @@
     <a
       href="https://en.wikipedia.org/wiki/Odds_and_evens_(hand_game)"
       target="_blank">
+      <img src="../../assets/images/outlink-accent.svg" alt="Outlink icon"/>
       Source
     </a>
   </div>
 </template>
 
 <style lang="scss" scoped>
+@import '../../assets/Variables.css';
+
   .about {
     display: grid;
-    row-gap: 20px;
+    row-gap: 40px;
+    justify-content: center;
+    padding: 80px 0;
+    background-color: var(--med-bg);
 
     h2,
     a {
       text-align: center;
+      color: var(--accent);
+    }
+
+    a {
+      display: grid;
+      grid: auto / auto auto;
+      column-gap: 5px;
+      align-items: center;
+      width: min-content;
+      font-size: 24px;
+      justify-self: center;
+
+      img {
+        width: 24px;
+      }
     }
 
     p {
       width: 50vw;
+      color: var(--dark);
     }
   }
 </style>
