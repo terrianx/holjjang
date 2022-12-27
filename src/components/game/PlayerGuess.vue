@@ -76,7 +76,7 @@ import { printBet, printGains } from './PrintHelper';
       <p>
         You bet <span class="accent">{{ playerBetAmount }}</span> 
         while Bot bet <span class="accent">{{ computerBetAmount }}</span>
-        and <span v-html="guessCorrectness"></span>
+        and you <span v-html="guessCorrectness"></span>
       </p>
     </div>
     <button
@@ -89,6 +89,7 @@ import { printBet, printGains } from './PrintHelper';
 
 <style lang="scss" scoped>
 @import '../../assets/Variables.css';
+@import '../../assets/GuessStyle.css';
 
   .parity-buttons {
     display: grid;
@@ -102,30 +103,5 @@ import { printBet, printGains } from './PrintHelper';
 
   .parity-buttons button:nth-child(2) {
     background-color: var(--dark);
-  }
-
-  .guess-text {
-    display: grid;
-    justify-items: center;
-    p {
-      max-width: 80%;
-      text-align: center;
-    }
-  }
-
-  ::v-deep .accent {
-    color: var(--accent);
-    font-weight: bold;
-  }
-
-  .guess-view button {
-    display: grid;
-    grid: auto / auto auto;
-    font-size: 30px;
-    justify-self: center;
-
-    img {
-      width: 36px;
-    }
   }
 </style>

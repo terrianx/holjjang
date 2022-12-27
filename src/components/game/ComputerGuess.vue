@@ -24,21 +24,21 @@ import { printBet, printGains } from './PrintHelper';
       printResult() {
         return 'Computer bet ' + this.computerBetAmount;
       },
-      printGuessCorrectness() {
+      guessCorrectness() {
         if (this.playerBetAmount) {
           let evenBet: boolean = this.playerBetAmount % 2 == 0;
           if (this.evenGuess && evenBet) {
             this.isPlayerWin = false;
-            return 'Computer correctly guessed even';
+            return 'correctly guessed <span class="accent">even</span>';
           } else if (this.evenGuess && !evenBet) {
             this.isPlayerWin = true;
-            return 'Computer incorrectly guessed even';
+            return 'incorrectly guessed <span class="accent">even</span>';
           } else if (!this.evenGuess && evenBet) {
             this.isPlayerWin = true;
-            return 'Computer incorrectly guessed odd';
+            return 'incorrectly guessed <span class="accent">odd</span>';
           } else {
             this.isPlayerWin = false;
-            return 'Computer correctly guessed odd';
+            return 'correctly guessed <span class="accent">odd</span>';
           }
         }
       },
@@ -68,14 +68,23 @@ import { printBet, printGains } from './PrintHelper';
 </script>
 
 <template>
-  <div>
-    <h2>You bet {{ getPrintBet }} and {{ printResult }}</h2>
-    <h3>{{ printGuessCorrectness }}</h3>
-    <p>{{ getPrintGains }}</p>
-    <button @click="endComputerGuess">Next --></button>
+  <div class="guess-view">
+    <div class="guess-text">
+      <h2>{{ getPrintGains }}</h2>
+      <p>
+        You bet <span class="accent">{{ playerBetAmount }}</span> 
+        while Bot bet <span class="accent">{{ computerBetAmount }}</span>
+        and Bot <span v-html="guessCorrectness"></span>
+      </p>
+    </div>
+    <button
+      @click="endComputerGuess">
+      Next
+      <img src="../../assets/images/right-arrow.svg" alt="Right arrow icon"/>
+    </button>
   </div>
 </template>
 
 <style lang="scss" scoped>
-
+@import '../../assets/GuessStyle.css';
 </style>

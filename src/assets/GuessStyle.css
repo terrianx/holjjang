@@ -1,0 +1,26 @@
+.guess-text {
+  display: grid;
+  justify-items: center;
+}
+
+.guess-text p {
+  max-width: 60%;
+  text-align: center;
+}
+
+::v-deep .accent {
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.guess-view button {
+  display: grid;
+  grid: auto / auto auto;
+  font-size: 30px;
+  justify-self: center;
+  column-gap: 10px;
+}
+
+.guess-view button img {
+  width: 36px;
+}

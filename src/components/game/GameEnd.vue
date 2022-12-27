@@ -1,7 +1,18 @@
 <script lang="ts">
   export default {
     props: {
-      winner: String
+      playerWon: Boolean
+    },
+    computed: {
+      result() {
+        if (this.playerWon) {
+          return '<h2>You won 🎉!</h2>'
+                  + '<p>Maybe it\'s still too early for bots to take over the world...</p>';
+        } else {
+          return '<h2>You lost 😔</h2>'
+                  + '<p>Sorry for your loss...try again below!</p>';
+        }
+      }
     },
     emits: ['on-reset'],
     methods: {
@@ -14,11 +25,34 @@
 
 <template>
   <div>
-    <h2>{{ winner }} wins! 🎉</h2>
-    <button @click="playAgain">Play again</button>
+    <div v-html="result" class="end-text"></div>
+    <button @click="playAgain">
+      Replay
+      <img src="../../assets/images/replay.svg" alt="Replay icon"/>
+    </button>
   </div>
 </template>
 
 <style lang="scss" scoped>
 
+  .end-text {
+    display: grid;
+    justify-items: center;
+  }
+
+  ::v-deep p {
+    max-width: 350px;
+  }
+
+  button {
+    display: grid;
+    grid: auto / auto auto;
+    column-gap: 10px;
+    font-size: 30px;
+    justify-self: center;
+
+    img {
+      width: 36px;
+    }
+  }
 </style>

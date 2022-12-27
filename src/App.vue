@@ -41,7 +41,7 @@ export default {
 
   html {
     -webkit-text-size-adjust: 100%;
-    background-color: hsl(35, 100%, 92%);
+    background-color: var(--bg);
   }
 
   body {
@@ -85,6 +85,7 @@ export default {
     padding: 5px 20px;
     width: min-content;
     height: min-content;
+    white-space: nowrap;
   }
 
 </style>

@@ -72,12 +72,8 @@ const defaultBet = 1;
       isGameEnd() {
         return this.winState != Winner.None;
       },
-      getWinner() {
-        if (this.winState == Winner.Player) {
-          return 'Player';
-        } else {
-          return 'Computer';
-        }
+      isPlayerWinner() {
+        return this.winState == Winner.Player;
       }
     },
     methods: {
@@ -172,17 +168,17 @@ const defaultBet = 1;
         :playerBetAmount="playerBetAmount"
         :computerBetAmount="computerBetAmount"
         v-else-if="isPlayerGuessTurn"/>
-      
+
       <GameEnd
         @on-reset="resetGame"
-        :winner="getWinner"
+        :playerWon="isPlayerWinner"
         v-if="isGameEnd"/>
     </div>
     <div class="marble-display-right">
       <p>Bot marbles</p>
       <h3>{{ computerMarbles }}</h3>
     </div>
-    <button class="reset">Reset</button>
+    <button @click="resetGame" class="reset">Reset</button>
   </div>
 </template>
 
@@ -191,7 +187,7 @@ const defaultBet = 1;
 
   .game-field {
     display: grid;
-    grid: 1fr 80px / 1fr 600px 1fr;
+    grid: 1fr 80px / 1fr 3fr 1fr;
     height: 100vh;
     width: 100%;
     align-items: center;
@@ -200,7 +196,7 @@ const defaultBet = 1;
   }
 
   .game-board {
-    padding: 0 60px;
+    padding: 0 40px;
     align-self: start;
     margin-top: 35vh;
   }
