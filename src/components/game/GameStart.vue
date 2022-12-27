@@ -10,7 +10,7 @@
 </script>
 
 <template>
-  <div class="game-start">
+  <div>
     <div>
       <h2>Who's first ✋?</h2>
       <p>Pick who starts guessing</p>
@@ -31,7 +31,7 @@
     justify-items: center;
 
     button {
-      font-size: 36px;
+      font-size: 30px;
     }
   }
 

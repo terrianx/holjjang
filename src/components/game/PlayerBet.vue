@@ -7,26 +7,41 @@
     emits: ['onPlayerBet'],
     data() {
       return {
-        marblesBet: 1,
-        marblesRemaining: this.marbles
+        marblesBet: 1
       }
     },
     computed: {
       printNextGuesser() {
         if (this.isPlayerGuessingNext) {
-          return 'You are guessing next';
+          return '<span>You</span> are the next guesser';
         } else {
-          return 'Computer is guessing next';
+          return '<span>Bot</span> is the next guesser';
         }
       }
     },
     methods: {
-      selectMarbles(e: Event) {
-        let eventTarget = e.target as HTMLInputElement;
-        this.marblesBet = parseInt(eventTarget.value);
-        if (this.marbles) {
-          this.marblesRemaining = this.marbles - this.marblesBet;
+      highlightField() {
+        (this.$refs.inputField as HTMLInputElement).select();
+      },
+      setBet(bet: number) {
+        if (!bet || bet <= 0) {
+          this.marblesBet = 1;
+        } else if (this.marbles && bet > this.marbles) {
+          this.marblesBet = this.marbles;
+        } else {
+          this.marblesBet = bet;
         }
+      },
+      decrementBet() {
+        this.setBet(this.marblesBet - 1);
+      },
+      incrementBet() {
+        this.setBet(this.marblesBet + 1);
+      },
+      selectMarbles(e: Event) {
+        let eventElement = e.target as HTMLInputElement;
+        let bet = parseInt(eventElement.value);
+        this.setBet(bet);
       },
       endPlayerSelect() {
         this.$emit('onPlayerBet', this.marblesBet);
@@ -37,19 +52,98 @@
 
 <template>
   <div>
-    <h2>{{ printNextGuesser }}, select amount to bet against Computer</h2>
-    <h3>Marbles remaining: {{ marblesRemaining }}</h3>
-    <input
-      type="number"
-      min="1"
-      :max="marbles"
-      :value="marblesBet"
-      @input="selectMarbles"
-      placeholder="1" >
-    <button @click="endPlayerSelect">Bet</button>
+    <div>
+      <h2>Make your bet 🤫</h2>
+      <p>Marbles on the line: <span>{{ marblesBet }}</span></p>
+    </div>
+    <div class="bet-actions">
+      <div class="bet-input">
+        <button @click="decrementBet">
+          <img src="../../assets/images/subtract.svg" alt="Decrement icon">
+        </button>
+        <input
+          type="number"
+          min="1"
+          :max="marbles"
+          :value="marblesBet"
+          ref="inputField"
+          @click="highlightField"
+          @keyup="highlightField"
+          @input="selectMarbles"
+          placeholder="1" >
+          <button @click="incrementBet">
+            <img src="../../assets/images/add.svg" alt="Increment icon">
+          </button>
+      </div>
+      <button
+        @click="endPlayerSelect"
+        class="bet-button">
+        Bet
+      </button>
+      <p class="next-guesser" v-html="printNextGuesser"></p>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+@import '../../assets/Variables.css';
 
+  .bet-actions {
+    display: grid;
+    grid: auto auto / auto auto;
+    row-gap: 40px;
+    column-gap: 60px;
+    justify-content: center;
+  }
+
+  .bet-input {
+    display: grid;
+    grid: auto / repeat(3, auto);
+
+    button {
+      display: grid;
+      // button 5px padding plus 36px font size
+      width: 46px;
+      height: 46px;
+      justify-content: center;
+      align-content: center;
+    }
+
+    img {
+      width: 32px;
+    }
+  }
+
+  input[type="number"] {
+    background-color: hsla(0, 0, 0, 0);
+    border: none;
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--dark);
+    text-align: center;
+    width: 50px;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  .bet-button {
+    font-size: 30px;
+    background-color: var(--dark);
+  }
+
+  .next-guesser {
+    grid-column: span 2;
+  }
+
+  ::v-deep span {
+    font-weight: bold;
+    color: var(--accent);
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    display: none;
+  }
 </style>

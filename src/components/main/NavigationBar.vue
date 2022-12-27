@@ -42,7 +42,7 @@
     h1 {
       color: var(--accent);
       font-family: 'Kalam', 'cursive';
-      font-size: 36px;
+      font-size: 48px;
     }
 
     a {
