@@ -39,6 +39,7 @@
     justify-content: center;
     padding: 80px 0;
     background-color: var(--med-bg);
+    max-width: var(--max-width);
 
     h2,
     a {

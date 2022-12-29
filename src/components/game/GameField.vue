@@ -190,6 +190,7 @@ const defaultBet = 1;
     grid: 1fr 80px / 1fr 3fr 1fr;
     height: 100vh;
     width: 100%;
+    max-width: var(--max-width);
     align-items: center;
     justify-items: center;
     color: var(--dark);

@@ -49,11 +49,12 @@
   footer {
     padding: 80px 0 40px 0;
     display: grid;
-    grid: auto auto / auto;
+    grid: auto auto / 1fr;
     row-gap: 80px;
-    justify-content: center;
     justify-items: center;
+    justify-self: center;
     background-color: var(--sat-bg);
+    width: 100%;
 
     p {
       color: var(--dark);
@@ -74,6 +75,7 @@
     display: grid;
     grid: auto / repeat(6, auto);
     column-gap: 60px;
+    max-width: var(--max-width);
   }
 
   .icon-link {

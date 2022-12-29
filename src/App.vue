@@ -47,20 +47,23 @@ export default {
     background-color: var(--bg);
   }
 
-  body {
+  #app {
     display: grid;
+    grid: repeat(3, auto) / auto;
+    width: 100%;
+    justify-items: center;
   }
 
-  #app {
-    width: 100%;
-    max-width: var(--max-width);
-    justify-self: center;
+  header {
+    display: grid;
+    justify-items: center;
   }
 
   main {
     display: grid;
     width: 100%;
     justify-items: center;
+    background-color: var(--med-bg);
   }
 
   a {
