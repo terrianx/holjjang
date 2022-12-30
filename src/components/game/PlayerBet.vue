@@ -59,7 +59,7 @@
     <div class="bet-actions">
       <div class="bet-input">
         <button @click="decrementBet">
-          <img src="../../assets/images/subtract.svg" alt="Decrement icon">
+          <span class="material-symbols-outlined">remove</span>
         </button>
         <input
           type="number"
@@ -72,7 +72,7 @@
           @input="selectMarbles"
           placeholder="1" >
           <button @click="incrementBet">
-            <img src="../../assets/images/add.svg" alt="Increment icon">
+            <span class="material-symbols-outlined">add</span>
           </button>
       </div>
       <button
@@ -107,10 +107,14 @@
       height: 46px;
       justify-content: center;
       align-content: center;
+
+      span {
+        color: white;
+      }
     }
 
-    img {
-      width: 32px;
+    button:hover > span{
+      color: var(--accent);
     }
   }
 
@@ -131,6 +135,12 @@
   .bet-button {
     font-size: 30px;
     background-color: var(--dark);
+  }
+
+  .bet-button:hover {
+    background-color: var(--clear);
+    border: 2px solid var(--dark);
+    color: var(--dark);
   }
 
   .next-guesser {

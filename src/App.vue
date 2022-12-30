@@ -71,6 +71,11 @@ export default {
     font-weight: bold;
   }
 
+  a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+  }
+
   h2 {
     font-size: 48px;
   }
@@ -87,12 +92,21 @@ export default {
     background-color: var(--accent);
     font-weight: bold;
     color: white;
-    border: none;
+    border: 2px solid var(--clear);
     border-radius: 8px;
     padding: 5px 20px;
     width: min-content;
     height: min-content;
     white-space: nowrap;
+    transition: 200ms;
+  }
+
+  button:hover {
+    cursor: pointer;
+    background-color: var(--clear);
+    color: var(--accent);
+    border: 2px solid var(--accent);
+    transition: 200ms;
   }
 
 </style>

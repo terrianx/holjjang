@@ -35,7 +35,13 @@
     }
   }
 
-  .start-buttons button:nth-child(2) {
+  button:nth-child(2) {
     background-color: var(--dark);
+  }
+
+  button:nth-child(2):hover {
+    background-color: var(--clear);
+    border: 2px solid var(--dark);
+    color: var(--dark);
   }
 </style>

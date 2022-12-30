@@ -80,9 +80,10 @@ import { printBet, printGains } from './PrintHelper';
       </p>
     </div>
     <button
-      @click="endPlayerGuess">
+      @click="endPlayerGuess"
+      class="next">
       Next
-      <img src="../../assets/images/right-arrow.svg" alt="Right arrow icon"/>
+      <span class="material-symbols-outlined">arrow_forward</span>
     </button>
   </div>
 </template>
@@ -103,5 +104,11 @@ import { printBet, printGains } from './PrintHelper';
 
   .parity-buttons button:nth-child(2) {
     background-color: var(--dark);
+  }
+
+  .parity-buttons button:nth-child(2):hover {
+    background-color: var(--clear);
+    border: 2px solid var(--dark);
+    color: var(--dark);
   }
 </style>

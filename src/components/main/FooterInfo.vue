@@ -20,8 +20,7 @@
         About
       </a>
       <a
-        href=""
-        target="_blank">
+        href="#">
         Rules
       </a>
       <a

@@ -78,9 +78,10 @@ import { printBet, printGains } from './PrintHelper';
       </p>
     </div>
     <button
-      @click="endComputerGuess">
+      @click="endComputerGuess"
+      class="next">
       Next
-      <img src="../../assets/images/right-arrow.svg" alt="Right arrow icon"/>
+      <span class="material-symbols-outlined">arrow_forward</span>
     </button>
   </div>
 </template>

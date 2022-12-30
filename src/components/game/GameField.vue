@@ -136,54 +136,63 @@ const defaultBet = 1;
 </script>
 
 <template>
-  <div class="game-field">
-    <div class="marble-display-left">
-      <p>Your marbles</p>
-      <h3>{{ playerMarbles }}</h3>
+ <div class="game-wrapper">
+    <div class="game-field">
+      <div class="marble-display-left">
+        <p>Your marbles</p>
+        <h3>{{ playerMarbles }}</h3>
+      </div>
+      <div class="game-board">
+        <GameStart
+          @on-start="startGame" 
+          v-if="isGameNotStarted" />
+  
+        <PlayerBet
+          @on-player-bet="playAfterBetTurn" 
+          :marbles="playerMarbles"
+          :isPlayerGuessingNext="isPlayerBetBeforeGuessTurn"
+          v-if="isPlayerBetTurn" />
+  
+        <ComputerGuess
+          @on-computer-guess="playComputerBet"
+          :marbles="computerMarbles" 
+          :playerBetAmount="playerBetAmount"
+          v-else-if="isComputerGuessTurn" />
+  
+        <ComputerBet
+          @on-computer-bet="playPlayerBetBeforeGuess"
+          :marbles="computerMarbles"
+          v-else-if="isComputerBetTurn"/>
+  
+        <PlayerGuess
+          @on-player-guess="playPlayerBet"
+          :playerBetAmount="playerBetAmount"
+          :computerBetAmount="computerBetAmount"
+          v-else-if="isPlayerGuessTurn"/>
+  
+        <GameEnd
+          @on-reset="resetGame"
+          :playerWon="isPlayerWinner"
+          v-if="isGameEnd"/>
+      </div>
+      <div class="marble-display-right">
+        <p>Bot marbles</p>
+        <h3>{{ computerMarbles }}</h3>
+      </div>
+      <button @click="resetGame" class="reset">Reset</button>
     </div>
-    <div class="game-board">
-      <GameStart
-        @on-start="startGame" 
-        v-if="isGameNotStarted" />
-
-      <PlayerBet
-        @on-player-bet="playAfterBetTurn" 
-        :marbles="playerMarbles"
-        :isPlayerGuessingNext="isPlayerBetBeforeGuessTurn"
-        v-if="isPlayerBetTurn" />
-
-      <ComputerGuess
-        @on-computer-guess="playComputerBet"
-        :marbles="computerMarbles" 
-        :playerBetAmount="playerBetAmount"
-        v-else-if="isComputerGuessTurn" />
-
-      <ComputerBet
-        @on-computer-bet="playPlayerBetBeforeGuess"
-        :marbles="computerMarbles"
-        v-else-if="isComputerBetTurn"/>
-
-      <PlayerGuess
-        @on-player-guess="playPlayerBet"
-        :playerBetAmount="playerBetAmount"
-        :computerBetAmount="computerBetAmount"
-        v-else-if="isPlayerGuessTurn"/>
-
-      <GameEnd
-        @on-reset="resetGame"
-        :playerWon="isPlayerWinner"
-        v-if="isGameEnd"/>
-    </div>
-    <div class="marble-display-right">
-      <p>Bot marbles</p>
-      <h3>{{ computerMarbles }}</h3>
-    </div>
-    <button @click="resetGame" class="reset">Reset</button>
-  </div>
+ </div>
 </template>
 
 <style lang="scss">
 @import '../../assets/Variables.css';
+
+  .game-wrapper {
+    display: grid;
+    width: 100%;
+    background-color: var(--bg);
+    justify-items: center;
+  }
 
   .game-field {
     display: grid;

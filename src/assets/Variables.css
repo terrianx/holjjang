@@ -4,6 +4,7 @@
   --bg: hsl(35, 100%, 92%);
   --med-bg: hsl(35, 100%, 88%);
   --sat-bg: hsl(35, 100%, 84%);
+  --clear: hsla(0, 0%, 0%, 0%);
 
   --max-width: 1200px;
 }

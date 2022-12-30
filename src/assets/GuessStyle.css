@@ -24,3 +24,12 @@
 .guess-view button img {
   width: 36px;
 }
+
+.next span {
+  align-self: center;
+  font-size: 30px;
+}
+
+.next button:hover > span{
+  color: var(--accent);
+}

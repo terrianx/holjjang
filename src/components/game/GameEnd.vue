@@ -28,13 +28,12 @@
     <div v-html="result" class="end-text"></div>
     <button @click="playAgain">
       Replay
-      <img src="../../assets/images/replay.svg" alt="Replay icon"/>
+      <span class="material-symbols-outlined">refresh</span>
     </button>
   </div>
 </template>
 
 <style lang="scss" scoped>
-
   .end-text {
     display: grid;
     justify-items: center;
@@ -50,9 +49,10 @@
     column-gap: 10px;
     font-size: 30px;
     justify-self: center;
+    align-items: center;
 
-    img {
-      width: 36px;
+    span {
+      font-size: 30px;
     }
   }
 </style>
