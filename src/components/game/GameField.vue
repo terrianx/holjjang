@@ -44,6 +44,9 @@ const defaultBet = 1;
       }
     },
     computed: {
+      defaultAmount() {
+        return defaultMarbles;
+      },
       isGameNotStarted() {
         return this.gameState == Turn.NotStarted
                 && this.winState == Winner.None;
@@ -157,11 +160,13 @@ const defaultBet = 1;
           @on-computer-guess="playComputerBet"
           :marbles="computerMarbles" 
           :playerBetAmount="playerBetAmount"
+          :default="defaultAmount"
           v-else-if="isComputerGuessTurn" />
   
         <ComputerBet
           @on-computer-bet="playPlayerBetBeforeGuess"
           :marbles="computerMarbles"
+          :default="defaultAmount"
           v-else-if="isComputerBetTurn"/>
   
         <PlayerGuess

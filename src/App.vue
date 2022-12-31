@@ -109,4 +109,8 @@ export default {
     transition: 200ms;
   }
 
+  button:active {
+    filter: brightness(1.5);
+    transition: 0;
+  }
 </style>

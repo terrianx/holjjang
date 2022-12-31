@@ -1,10 +1,12 @@
 <script lang="ts">
 import { printBet, printGains } from './PrintHelper';
+import { smartBet } from './CreateBet';
 
   export default {
     props: {
       marbles: Number,
       playerBetAmount: Number,
+      default: Number
     },
     emits: ['onComputerGuess'],
     data() {
@@ -47,9 +49,13 @@ import { printBet, printGains } from './PrintHelper';
       }
     },
     mounted() {
-      this.evenGuess = Math.random() >= 0.5;
-      if (this.marbles) {
-        this.computerBetAmount = Math.ceil(Math.random() * this.marbles);
+      if (this.default && this.marbles == (this.default * 2) - 1) {
+        this.evenGuess = false;
+      } else {
+        this.evenGuess = Math.random() >= 0.5;
+      }
+      if (this.marbles && this.default) {
+        this.computerBetAmount = smartBet(this.default, this.marbles);
       }
       if (this.playerBetAmount) {
         this.minimumBet = Math.min(this.computerBetAmount, this.playerBetAmount);
