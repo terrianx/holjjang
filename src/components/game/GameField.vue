@@ -129,10 +129,16 @@ const defaultBet = 1;
       resetGame() {
         this.gameState = Turn.NotStarted;
         this.winState = Winner.None;
-        this.playerMarbles = defaultMarbles,
-        this.computerMarbles = defaultMarbles,
-        this.playerBetAmount = defaultBet,
-        this.computerBetAmount = defaultBet
+        this.playerMarbles = defaultMarbles;
+        this.computerMarbles = defaultMarbles;
+        this.playerBetAmount = defaultBet;
+        this.computerBetAmount = defaultBet;
+        // remove fade
+        (this.$refs.fadeBoard as HTMLElement).classList.add('fade');
+        // add class back in to replay animation
+        setTimeout(() => {
+          (this.$refs.fadeBoard as HTMLElement).classList.remove('fade');
+        }, 1000)
       }
     }
   }
@@ -140,12 +146,12 @@ const defaultBet = 1;
 
 <template>
  <div class="game-wrapper">
-    <div class="game-field">
+    <div class="game-field fade">
       <div class="marble-display-left">
         <p>Your marbles</p>
         <h3>{{ playerMarbles }}</h3>
       </div>
-      <div class="game-board">
+      <div ref="fadeBoard" class="game-board">
         <GameStart
           @on-start="startGame" 
           v-if="isGameNotStarted" />
@@ -155,7 +161,7 @@ const defaultBet = 1;
           :marbles="playerMarbles"
           :isPlayerGuessingNext="isPlayerBetBeforeGuessTurn"
           v-if="isPlayerBetTurn" />
-  
+
         <ComputerGuess
           @on-computer-guess="playComputerBet"
           :marbles="computerMarbles" 
@@ -192,6 +198,11 @@ const defaultBet = 1;
 <style lang="scss">
 @import '../../assets/Variables.css';
 
+  @keyframes fade {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
   .game-wrapper {
     display: grid;
     width: 100%;
@@ -208,6 +219,10 @@ const defaultBet = 1;
     align-items: center;
     justify-items: center;
     color: var(--dark);
+  }
+
+  .fade {
+    animation: fade 1s;
   }
 
   .game-board {
