@@ -63,7 +63,6 @@ export default {
     display: grid;
     width: 100%;
     justify-items: center;
-    // background-color: var(--med-bg);
   }
 
   a {

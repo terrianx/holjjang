@@ -5,6 +5,8 @@
 </script>
 
 <template>
+  <img class="curve-footer-transition" src="../../assets/images/curve-footer-transition.svg" alt="curve"/>
+  <img class="curve-footer" src="../../assets/images/curve-footer.svg" alt="curve"/>
   <footer>
     <div class="links">
       <a
@@ -45,8 +47,19 @@
 <style lang="scss" scoped>
 @import '../../assets/Variables.css';
 
+  .curve-footer-transition {
+    position: relative;
+    top: 70%;
+    z-index: 4;
+  }
+
+  .curve-footer {
+    position: relative;
+    z-index: 5;
+  }
+
   footer {
-    padding: 80px 0 40px 0;
+    padding: 0 0 40px 0;
     display: grid;
     grid: auto auto / 1fr;
     row-gap: 80px;

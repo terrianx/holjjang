@@ -1,12 +1,23 @@
 <template>
-  <a href="#">
-    <img src="../../assets/images/up-arrow.svg" alt="Up icon" />
-    Back to top
-  </a>
+  <div>
+    <a href="#">
+      <img src="../../assets/images/up-arrow.svg" alt="Up icon" />
+      Back to top
+    </a>
+  </div>
 </template>
 
 <style lang="scss" scoped>
 @import '../../assets/Variables.css';
+
+  div {
+    display: grid;
+    width: 100%;
+    background-color: var(--med-bg);
+    justify-content: center;
+    padding-bottom: 200px;
+    margin-bottom: -20%;
+  }
 
   a {
     display: grid;
