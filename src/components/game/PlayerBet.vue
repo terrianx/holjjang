@@ -119,7 +119,7 @@
   }
 
   input[type="number"] {
-    background-color: hsla(0, 0, 0, 0);
+    background-color: var(--clear);
     border: none;
     font-size: 36px;
     font-weight: bold;
@@ -147,7 +147,7 @@
     grid-column: span 2;
   }
 
-  ::v-deep span {
+  :deep(span) {
     font-weight: bold;
     color: var(--accent);
   }

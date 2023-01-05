@@ -39,7 +39,7 @@
     justify-items: center;
   }
 
-  ::v-deep p {
+  :deep(p) {
     max-width: 350px;
   }
 

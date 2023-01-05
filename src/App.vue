@@ -75,6 +75,11 @@ export default {
     text-decoration-thickness: 3px;
   }
 
+  a:active {
+    filter: brightness(1.5);
+    transition: 0;
+  }
+
   h2 {
     font-size: 48px;
   }

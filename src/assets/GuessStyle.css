@@ -8,7 +8,7 @@
   text-align: center;
 }
 
-::v-deep .accent {
+:deep(.accent) {
   color: var(--accent);
   font-weight: bold;
 }
