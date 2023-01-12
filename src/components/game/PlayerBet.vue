@@ -68,7 +68,6 @@
           :value="marblesBet"
           ref="inputField"
           @click="highlightField"
-          @keyup="highlightField"
           @input="selectMarbles"
           placeholder="1" >
           <button @click="incrementBet">
