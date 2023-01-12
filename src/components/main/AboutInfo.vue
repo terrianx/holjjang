@@ -5,8 +5,6 @@
 </script>
 
 <template>
-  <img class="curve-about-transition" src="../../assets/images/curve-about-transition.svg" alt="Curve"/>
-  <img class="curve-about" src="../../assets/images/curve-about.svg" alt="Curve"/>
   <div class="about-wrapper">
     <div id="about" class="about">
       <h2>About</h2>
@@ -37,16 +35,6 @@
 
 <style lang="scss" scoped>
 @import '../../assets/Variables.css';
-
-  .curve-about-transition {
-    position: relative;
-    top: 70%;
-    z-index: 4;
-  }
-
-  .curve-about {
-    z-index: 5;
-  }
 
   .about-wrapper {
     display: grid;

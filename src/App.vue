@@ -1,6 +1,7 @@
 <script lang="ts">
 import NavigationBar from './components/main/NavigationBar.vue';
 import GameField from './components/game/GameField.vue';
+import RulesInfo from './components/main/RulesInfo.vue';
 import AboutInfo from './components/main/AboutInfo.vue';
 import BackToTop from './components/main/BackToTop.vue';
 import FooterInfo from './components/main/FooterInfo.vue';
@@ -9,6 +10,7 @@ export default {
   components: {
     NavigationBar,
     GameField,
+    RulesInfo,
     AboutInfo,
     BackToTop,
     FooterInfo
@@ -22,6 +24,7 @@ export default {
   </header>
   <main>
     <GameField />
+    <RulesInfo />
     <AboutInfo />
     <BackToTop />
   </main>

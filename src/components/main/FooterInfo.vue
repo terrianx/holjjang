@@ -22,7 +22,7 @@
         About
       </a>
       <a
-        href="#">
+        href="#rules">
         Rules
       </a>
       <a

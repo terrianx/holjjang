@@ -1,15 +1,5 @@
 <script lang="ts">
   export default {
-    data() {
-      return {
-        isRuleShow: false
-      }
-    },
-    methods: {
-      showRules() {
-
-      }
-    }
   }
 </script>
 
@@ -22,7 +12,7 @@
     </div>
     <div class="nav-right">
       <a href="#about">About</a>
-      <button @click="showRules">Rules</button>
+      <a href="#rules"><button>Rules</button></a>
     </div>
   </nav>
 </template>
