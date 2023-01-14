@@ -37,7 +37,7 @@
         target="_blank"
         class="icon-link">
         <img src="../../assets/images/outlink-dark.svg" alt="Outlink icon"/>
-        Terrian Xiao
+        My Site
       </a>
     </div>
     <p class="copyright">© Terrian Xiao 2023. All rights reserved.</p>
@@ -76,6 +76,7 @@
     a {
       color: var(--dark);
       font-size: 24px;
+      justify-self: left;
     }
 
     img {
@@ -88,6 +89,7 @@
     grid: auto / repeat(6, auto);
     column-gap: 60px;
     max-width: var(--max-width);
+    transition: 200ms;
   }
 
   .icon-link {
@@ -99,5 +101,19 @@
 
   .copyright {
     grid-column: span 6;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .links {
+      column-gap: 30px;
+      transition: 200ms;
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    .links {
+      grid: repeat(3, auto) / 1fr 1fr;
+      row-gap: 20px;
+    }
   }
 </style>

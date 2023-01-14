@@ -71,6 +71,7 @@ export default {
   a {
     text-decoration: none;
     font-weight: bold;
+    font-size: 24px;
   }
 
   a:hover {
@@ -119,5 +120,9 @@ export default {
   button:active {
     filter: brightness(1.5);
     transition: 0;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    
   }
 </style>

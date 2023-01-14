@@ -190,7 +190,9 @@ const defaultBet = 1;
         <p>Bot marbles</p>
         <h3>{{ computerMarbles }}</h3>
       </div>
-      <button @click="resetGame" class="reset">Reset</button>
+      <div class="reset">
+        <button @click="resetGame">Reset</button>
+      </div>
     </div>
  </div>
 </template>
@@ -219,6 +221,7 @@ const defaultBet = 1;
     align-items: center;
     justify-items: center;
     color: var(--dark);
+    padding: 0 40px;
   }
 
   .fade {
@@ -246,11 +249,13 @@ const defaultBet = 1;
   .marble-display-left {
     padding-right: 40px;
     border-right: 2px solid var(--dark);
+    width: max-content;
   }
 
   .marble-display-right {
     padding-left: 40px;
     border-left: 2px solid var(--dark);
+    width: max-content;
   }
 
   .marble-display-left,
@@ -270,9 +275,15 @@ const defaultBet = 1;
   }
 
   .reset {
-    margin-right: 40px;
     grid-column: span 3;
     justify-self: right;
-    font-size: 24px;
+
+    button {
+      font-size: 24px;
+    }
+  }
+
+  @media only screen and (max-width: 1000px) {
+    
   }
 </style>

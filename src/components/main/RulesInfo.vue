@@ -56,8 +56,16 @@
     }
 
     p {
-      width: 50vw;
+      width: 800px;
       color: var(--dark);
+      transition: 200ms;
+    }
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .rules p {
+      width: 600px;
+      transition: 200ms;
     }
   }
 </style>
