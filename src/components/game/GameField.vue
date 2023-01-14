@@ -214,7 +214,7 @@ const defaultBet = 1;
 
   .game-field {
     display: grid;
-    grid: 1fr 80px / 1fr 3fr 1fr;
+    grid: 1fr 80px / 160px auto 160px;
     height: 100vh;
     width: 100%;
     max-width: var(--max-width);
@@ -250,12 +250,14 @@ const defaultBet = 1;
     padding-right: 40px;
     border-right: 2px solid var(--dark);
     width: max-content;
+    transition: 200ms;
   }
 
   .marble-display-right {
     padding-left: 40px;
     border-left: 2px solid var(--dark);
     width: max-content;
+    transition: 200ms;
   }
 
   .marble-display-left,
@@ -284,6 +286,85 @@ const defaultBet = 1;
   }
 
   @media only screen and (max-width: 1000px) {
-    
+    .game-board {
+      padding: 0 20px;
+    }
+
+    .game-board > div h2 {
+      font-size: 36px;
+    }
+  
+    .marble-display-left {
+      padding-right: 20px;
+      transition: 200ms;
+    }
+  
+    .marble-display-right {
+      padding-left: 20px;
+      transition: 200ms;
+    }
+  }
+
+  @media only screen and (max-width: 825px) {
+    .game-field {
+      grid: 30vh 1fr 80px / 1fr 1fr;
+    }
+
+    .game-board {
+      margin-top: 40px;
+      grid-row: 2;
+      grid-column: span 2;
+    }
+
+    .marble-display-left {
+      justify-self: right;
+      border-width: 1px;
+    }
+
+    .marble-display-right {
+      justify-self: left;
+      border-width: 1px;
+    }
+
+    .marble-display-left,
+    .marble-display-right {
+      height: 100px;
+      margin-top: 25vh;
+      grid-row: 1;
+    }
+
+    .reset {
+      grid-row: 3;
+      grid-column: span 2;
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+    .game-field {
+      padding: 0 10px;
+    }
+
+    .game-board {
+      padding: 0 10px;
+    }
+
+    .game-board > div {
+      h2 {
+        font-size: 32px;
+      }
+    }
+
+    .marble-display-left,
+    .marble-display-right {
+      height: 60px;
+
+      h3 {
+        font-size: 24px;
+      }
+    }
+
+    .reset button {
+      font-size: 20px;
+    }
   }
 </style>

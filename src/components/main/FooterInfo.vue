@@ -114,6 +114,13 @@
     .links {
       grid: repeat(3, auto) / 1fr 1fr;
       row-gap: 20px;
+      column-gap: 100px;
+    }
+  }
+  
+  @media only screen and (max-width: 500px) {
+    .links {
+      column-gap: 50px;
     }
   }
 </style>

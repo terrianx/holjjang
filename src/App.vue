@@ -33,6 +33,7 @@ export default {
 
 <style lang="scss">
 @import './assets/Variables.css';
+  $highlight: hsla(7, 100%, 72%, 50%);
 
   * {
     box-sizing: border-box;
@@ -43,6 +44,14 @@ export default {
     font-family: 'Inter', sans-serif;
 
     scroll-behavior: smooth;
+  }
+
+  ::selection {
+    background: $highlight;
+  }
+
+  ::-moz-selection {
+    background: $highlight;
   }
 
   html {
@@ -120,9 +129,5 @@ export default {
   button:active {
     filter: brightness(1.5);
     transition: 0;
-  }
-
-  @media only screen and (max-width: 1000px) {
-    
   }
 </style>

@@ -33,6 +33,7 @@
       color: var(--accent);
       font-family: 'Kalam', 'cursive';
       font-size: 48px;
+      transition: 200ms;
     }
 
     a {
@@ -64,6 +65,40 @@
     align-items: center;
     justify-items: center;
     justify-self: right;
+  }
+
+  @media only screen and (max-width: 600px) {
+    nav h1 {
+      font-size: 40px;
+      transition: 200ms;
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+    nav {
+      padding: 0 10px;
+
+      h1 {
+        font-size: 36px;
+      }
+    }
+
+    .nav-left {
+      column-gap: 2px;
+
+      img {
+        width: 16px;
+      }
+    }
+
+    .nav-right {
+      column-gap: 10px;
+
+      a,
+      button {
+        font-size: 20px;
+      }
+    }
   }
 
 </style>

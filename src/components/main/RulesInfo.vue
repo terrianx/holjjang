@@ -68,4 +68,25 @@
       transition: 200ms;
     }
   }
+
+  @media only screen and (max-width: 700px) {
+    .rules p {
+      width: 400px;
+      transition: 200ms;
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+    .rules {
+      h2 {
+        font-size: 36px;
+      }
+
+      p {
+        font-size: 20px;
+        width: 350px;
+        transition: 200ms;
+      }
+    }
+  }
 </style>

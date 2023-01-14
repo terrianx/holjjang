@@ -33,3 +33,9 @@
 .next button:hover > span{
   color: var(--accent);
 }
+
+@media only screen and (max-width: 500px) {
+  .guess-text p {
+    max-width: 80%;
+  }
+}

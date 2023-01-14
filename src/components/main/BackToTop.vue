@@ -34,4 +34,11 @@
       width: 24px;
     }
   }
+
+  @media only screen and (max-width: 500px) {
+    a {
+      margin: 60px 0;
+      font-size: 20px;
+    }
+  }
 </style>

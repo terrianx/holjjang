@@ -83,4 +83,29 @@
       transition: 200ms;
     }
   }
+
+  @media only screen and (max-width: 700px) {
+    .about p {
+      width: 400px;
+      transition: 200ms;
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+    .about {
+      h2 {
+        font-size: 36px;
+      }
+
+      p {
+        font-size: 20px;
+        width: 350px;
+        transition: 200ms;
+      }
+
+      a {
+        font-size: 20px;
+      }
+    }
+  }
 </style>
