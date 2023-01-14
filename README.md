@@ -1,6 +1,7 @@
-# Holjjang
+# Holjjang - [Link to Website](https://holjjang.netlify.app/)
 
-A mini marble game commonly known as Odds and Evens. I created this to learn Vue, Typescript, and SCSS.
+A mini marble game commonly known as odds and evens. I created this to learn Vue, Typescript, and SCSS. Hosted by 
+[Netlify](https://www.netlify.com/).
 
 ## What I learned
 ### 1. Vue
@@ -28,6 +29,7 @@ A mini marble game commonly known as Odds and Evens. I created this to learn Vue
 ## Features
 - Bot player with built in betting strategy
 - Interactive game field
+- Responsive to window resizing
 - About section with origin and history of Holjjang
 - Organic curves using SVGs in background for enhanced visuals
 
